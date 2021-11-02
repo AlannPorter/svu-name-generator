@@ -1,0 +1,14 @@
+{
+"JAN" : "M",
+"FEB" : "F",
+"MAR" : "M",
+"APR" : "F",
+"MAY" : "M",
+"JUN" : "F",
+"JUL" : "M",
+"AUG" : "F",
+"SEP" : "M",
+"OCT" : "F",
+"NOV" : "M",
+"DEC" : "F"
+}

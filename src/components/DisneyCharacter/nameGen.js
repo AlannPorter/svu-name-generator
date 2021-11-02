@@ -4,8 +4,8 @@ import {  Button, Divider, FormControl, FormControlLabel, FormLabel, Grid, IconB
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Box } from '@mui/system';
 
-import knightLast from './data/knightLast.json'
-import knightFirst from './data/knightFirst.json'
+//import knightLast from './data/knightLast.json'
+import maleFemale from './data/MaleFemale.json'
 import monthsList from '../data/monthsList.json'
 
 
@@ -23,39 +23,44 @@ const style = {
 
 function NameGen({closeFunction}) {
   const [currentPage, setCurrentPage] = useState(1)
-  const [lastName, setLastName] = useState("")
+  const [firstName, setFirstName] = useState("")
   const [birthMonth, setBirthMonth] = useState("JAN")
   const [knightName, setKnightName] = useState("")
-  const [gender, setGender] = useState("DTS")
+  //const [gender, setGender] = useState("DTS")
 
-  function getFirstPart() {
-    const firstLetter = lastName.substring(0,1).toUpperCase()
+  function getVillianHero() {
+    const firstLetter = firstName.substring(0,1).toUpperCase()
     console.log(firstLetter)
-    const firstPart = knightFirst[firstLetter]
-    return firstPart
+    const vilHer = ''
+    if (firstLetter in ['A','B','C','D','E','F','G','H','I','J','K','L','M'])
+      vilHer = 'Villian'
+    else
+      vilHer = "Hero"
+    return vilHer
   }
 
-  function getLastPart() {
-    const lastPart = knightLast[birthMonth.toUpperCase()]
-    return lastPart
-  }
-
-  function getTitle(){
-    if(gender === 'M'){
-      return "Sir"
-    } else if (gender === "F"){
-      return "Lady"
-    } else {
-      return "Knight"
-    }
+  function getMaleFemale(){
+    const MF = maleFemale[birthMonth]
+    return MF
   }
 
   function getNewName() {
-    const firstPart = getFirstPart()
-    const lastPart = getLastPart()
-    const title = getTitle()
+    const firstPart = getVillianHero()
+    const lastPart = ''//getLastPart()
+    const title = getMaleFemale()
+    
     setKnightName(title + " " + firstPart + " " + lastPart)
     setCurrentPage(2)
+
+    /*                   <FormControl component="fieldset">
+                    <FormLabel component="legend">Gender</FormLabel>
+                    <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
+                      <FormControlLabel value="F" onChange={e => setGender(e.target.value)} control={<Radio />} label="Female" />
+                      <FormControlLabel value="M" onChange={e => setGender(e.target.value)} control={<Radio />} label="Male" />
+                      <FormControlLabel value="DTS" onChange={e => setGender(e.target.value)} control={<Radio />} label="Other" />
+
+                    </RadioGroup>
+                  </FormControl> */
   }
    
 
@@ -71,13 +76,13 @@ function NameGen({closeFunction}) {
               </IconButton>
             </Box>
             <Typography id="modal-modal-title" variant="h4" component="h2">
-              Knight Name
+              Disney Name
             </Typography>
             <Divider/>
             {(currentPage === 1) ? (
               <>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Find out your Knight name so you can properly defend and protect.
+                Find out your Disney Character Name.
               </Typography>
               <Box
                 component="form"
@@ -88,18 +93,10 @@ function NameGen({closeFunction}) {
                 autoComplete="off"
                 >
 
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">Gender</FormLabel>
-                  <RadioGroup row aria-label="gender" name="row-radio-buttons-group">
-                    <FormControlLabel value="F" onChange={e => setGender(e.target.value)} control={<Radio />} label="Female" />
-                    <FormControlLabel value="M" onChange={e => setGender(e.target.value)} control={<Radio />} label="Male" />
-                    <FormControlLabel value="DTS" onChange={e => setGender(e.target.value)} control={<Radio />} label="Other" />
-                   
-                  </RadioGroup>
-                </FormControl>
 
 
-                <TextField value={lastName} onChange={e => setLastName(e.target.value)} id="first-name" label="Last Name" variant="outlined" />
+
+                <TextField value={firstName} onChange={e => setFirstName(e.target.value)} id="first-name" label="Last Name" variant="outlined" />
 
                 <FormControl>
                       <InputLabel htmlFor="birthMonth">Birth Month</InputLabel>
@@ -129,7 +126,7 @@ function NameGen({closeFunction}) {
             ) : (
               <>
                 <Typography id="modal-modal-title" variant="h5" component="h2" sx={{marginTop:"1em"}}>
-                  Your Knight Name is...
+                  Your Disney Character Name is...
                 </Typography>
                 <Typography id="modal-modal-title" variant="h3" component="h2" sx={{marginTop:"1em"}}>
                   {knightName}

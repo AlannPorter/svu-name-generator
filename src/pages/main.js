@@ -5,7 +5,7 @@ import {  Card, CardActionArea, CardContent, CardMedia, Grid,  Modal, Typography
 // import WhatshotIcon from '@mui/icons-material/Whatshot'
 // import AdbIcon from '@mui/icons-material/Adb'
 import VikingName from '../components/viking/nameGen'
-import KnightName from '../components/knight/nameGen'
+import KnightName from '../components/DisneyCharacter/nameGen'
 
 
 function Main(props) {
@@ -68,12 +68,12 @@ function Main(props) {
                         <CardMedia
                         component="img"
                         height="140"
-                        image="/static/images/knight.jpg"
+                        image="/static/images/Disney_characters.jpg"
                         alt="viking"
                         />
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            Knight Name
+                            Disney Name
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             Defend against evil doers and spread peace throughout the land.
